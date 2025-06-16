@@ -54,5 +54,10 @@ public class UserController {
 		service.deleteAllUserDetails();
 		return ResponseEntity.ok("ALL DETAILS ARE DELETED ");
 	}
-
+    
+	@GetMapping("/update/{id}/{name}/{addr}")
+	public ResponseEntity<String> updateUserDetailes(@PathVariable Integer id, @PathVariable String name, @PathVariable String addr){
+		service.updateUserDetails(new User(id, name, addr));
+		return ResponseEntity.ok("Record Updated succesfully.");
+	}
 }

@@ -41,4 +41,14 @@ public class UserServiceImpl implements UserService {
         repo.deleteAll();
         System.out.println("Deleted all records!!");
 	}
+	
+	@Override
+	public void updateUserDetails(User user) {
+		User existingUser = repo.findById(user.getuId())
+			                .orElseThrow(()->new UserNotFoundException("User Detaile is not available in DB with id: "+user.getuId()));
+	
+		existingUser.setUname(user.getUname());
+		existingUser.setAddr(user.getAddr());
+	 repo.save(existingUser);
+	}
 }
