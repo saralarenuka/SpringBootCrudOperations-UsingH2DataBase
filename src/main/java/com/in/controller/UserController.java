@@ -1,9 +1,9 @@
 package com.in.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +43,16 @@ public class UserController {
 		List<User> list = service.getUserDetails();
 		return list;
 	}
-	
-	
+	@GetMapping("/delete/{id}")
+	public ResponseEntity<String> deleteUser(@PathVariable Integer id) {
+	    service.deleteOneUser(id);
+	    return ResponseEntity.ok("User deleted with id: " + id);
+	}
+
+	@GetMapping("/deleteAll")
+	public ResponseEntity<String> deleteAllUserRecords() {
+		service.deleteAllUserDetails();
+		return ResponseEntity.ok("ALL DETAILS ARE DELETED ");
+	}
+
 }
