@@ -1,5 +1,8 @@
 package com.in.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,11 +35,14 @@ public class UserController {
 	}
 	@GetMapping("/get/{id}")
 	public User getOneUserDetails(@PathVariable("id") Integer id) {
-		
 		return service.getOneUser(id);
 	}
 	
-	
+	@GetMapping("/display")
+	public List<User> getAllUserDetails(){
+		List<User> list = service.getUserDetails();
+		return list;
+	}
 	
 	
 }
